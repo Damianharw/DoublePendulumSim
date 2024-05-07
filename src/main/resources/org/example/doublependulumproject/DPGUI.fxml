@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="418.0" prefWidth="600.0" style="-fx-background-color: #3D3D3D;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.doublependulumproject.DPController">
+   <children>
+      <FlowPane alignment="CENTER" columnHalignment="CENTER" prefHeight="200.0" prefWidth="600.0" AnchorPane.bottomAnchor="53.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Pane prefHeight="365.0" prefWidth="600.0">
+               <children>
+                  <Pane fx:id="trailPane" prefHeight="365.0" prefWidth="600.0" />
+                  <Line fx:id="line1" endX="75.0" layoutX="300.0" layoutY="183.0" stroke="WHITE" />
+                  <Line fx:id="line2" endX="75.0" layoutX="375.0" layoutY="183.0" stroke="WHITE" />
+                  <Circle fx:id="anchor" fill="#e8e8e8" layoutX="300.0" layoutY="183.0" radius="5.0" stroke="RED" strokeType="OUTSIDE" strokeWidth="2.0" />
+                  <Circle fx:id="pend1" centerX="75.0" fill="DODGERBLUE" layoutX="300.0" layoutY="183.0" radius="10.0" stroke="WHITE" strokeType="INSIDE" />
+                  <Circle fx:id="pend2" centerX="75.0" fill="DODGERBLUE" layoutX="375.0" layoutY="183.0" radius="10.0" stroke="WHITE" strokeType="INSIDE" />
+               </children>
+            </Pane>
+         </children>
+      </FlowPane>
+      <FlowPane alignment="CENTER" columnHalignment="CENTER" hgap="3.0" layoutY="362.0" prefHeight="39.0" style="-fx-padding: 0;" AnchorPane.bottomAnchor="17.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <Button fx:id="mainButton" mnemonicParsing="false" onAction="#startSimulation" text="Start simulation" />
+            <Button fx:id="resetButton" mnemonicParsing="false" onAction="#reset" text="Reset" visible="false">
+               <FlowPane.margin>
+                  <Insets />
+               </FlowPane.margin>
+            </Button>
+         </children>
+      </FlowPane>
+      <AnchorPane fx:id="settingPane" prefHeight="449.0" prefWidth="153.0" AnchorPane.bottomAnchor="-31.0" AnchorPane.leftAnchor="-153.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Pane opacity="0.46" prefHeight="418.0" prefWidth="149.0" style="-fx-background-color: black;" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0" />
+            <Label alignment="CENTER" layoutY="60.0" prefHeight="17.0" prefWidth="149.0" text="Settings" textFill="WHITE" />
+            <Spinner fx:id="m1_spinner" editable="true" layoutX="73.0" layoutY="100.0" prefHeight="14.0" prefWidth="70.0" />
+            <Spinner fx:id="L1_spinner" editable="true" layoutX="73.0" layoutY="130.0" prefHeight="14.0" prefWidth="70.0" />
+            <Spinner fx:id="theta1_spinner" editable="true" layoutX="73.0" layoutY="160.0" prefHeight="14.0" prefWidth="70.0" />
+            <Spinner fx:id="m2_spinner" editable="true" layoutX="73.0" layoutY="190.0" prefHeight="14.0" prefWidth="70.0" />
+            <Spinner fx:id="L2_spinner" editable="true" layoutX="73.0" layoutY="220.0" prefHeight="14.0" prefWidth="70.0" />
+            <Spinner fx:id="theta2_spinner" editable="true" layoutX="73.0" layoutY="250.0" prefHeight="14.0" prefWidth="70.0" />
+            <Spinner fx:id="deltat_spinner" editable="true" layoutX="73.0" layoutY="295.0" prefHeight="14.0" prefWidth="70.0" />
+            <Label layoutX="20.0" layoutY="105.0" text="m1:" textFill="WHITE" />
+            <Label layoutX="20.0" layoutY="135.0" text="L1" textFill="WHITE" />
+            <Label layoutX="20.0" layoutY="165.0" text="Theta1:" textFill="WHITE" />
+            <Label layoutX="20.0" layoutY="195.0" text="m2:" textFill="WHITE" />
+            <Label layoutX="20.0" layoutY="225.0" text="L2:" textFill="WHITE" />
+            <Label layoutX="20.0" layoutY="255.0" text="Theta2:" textFill="WHITE" />
+            <Label layoutX="20.0" layoutY="300.0" text="dt(1e^-3)" textFill="WHITE" />
+            <CheckBox fx:id="trail" layoutX="20.0" layoutY="330.0" mnemonicParsing="false" onAction="#toggleTrailVisibility" selected="true" text="TRAIL" textFill="WHITE" />
+            <Label alignment="CENTER" layoutY="360.0" prefHeight="17.0" prefWidth="149.0" text="SPEED" textAlignment="CENTER" textFill="WHITE" />
+            <Slider fx:id="speed_slider" blockIncrement="0.25" layoutY="380.0" majorTickUnit="0.5" max="3.0" min="0.5" minorTickCount="1" prefHeight="16.0" prefWidth="150.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="1.0">
+               <cursor>
+                  <Cursor fx:constant="OPEN_HAND" />
+               </cursor>
+            </Slider>
+            <Text fill="#f80000" layoutY="430.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Changing by large amounts when paused will lead to unexpected behaviour" wrappingWidth="148.92316055297852" />
+         </children>
+      </AnchorPane>
+      <Button fx:id="settingButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#toggleSettings" prefHeight="25.0" prefWidth="26.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <effect>
+            <DropShadow />
+         </effect>
+      </Button>
+   </children>
+</AnchorPane>
