@@ -1,6 +1,5 @@
 package org.example.doublependulumproject;
 
-import javafx.animation.Animation;
 import javafx.animation.Interpolator;
 import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
@@ -15,6 +14,9 @@ import javafx.scene.shape.Line;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * Controller class for the double pendulum fxml file. Handles all interactions with the GUI.
+ */
 public class DPController implements Initializable{
     @FXML
     private Circle pend1, pend2, anchor;
@@ -73,6 +75,10 @@ public class DPController implements Initializable{
                 dp.setSpeed(speed_slider.getValue());
         });
     }
+
+    /**
+     * Toggles settings window with an animation when settings button is clicked.
+     */
     @FXML
     public void toggleSettings(){
         TranslateTransition translate = new TranslateTransition();
@@ -95,13 +101,19 @@ public class DPController implements Initializable{
         }
     }
 
+    /**
+     * Toggles visibility of panel with trial curve.
+     */
     @FXML
     public void toggleTrailVisibility(){
         trailPane.visibleProperty().setValue(!trailPane.isVisible());
     }
 
+    /**
+     * Starts simulation with new double pendulum with values set in setting window. Enables visibility of reset button.
+     */
     @FXML
-    private void startSimulation() {
+    public void startSimulation() {
         init = saveInitial();
         dp = new DoublePendulum(this, m1_spinner.getValue(), L1_spinner.getValue(),
                 toRadians(theta1_spinner.getValue()), m2_spinner.getValue(), L2_spinner.getValue(),
@@ -116,6 +128,11 @@ public class DPController implements Initializable{
                             m2_spinner.getValue(), L2_spinner.getValue(), theta2_spinner.getValue()};
     }
 
+    /**
+     * Updates position of both pendulums and both rods based on pendulum angles with vertical axis. Updates trail.
+     * @param angle1 angle of first pendulum with respect to vertical axis ( positive on the right, negative on the left )
+     * @param angle2 angle of second pendulum with respect to vertical axis ( positive on the right, negative on the left )
+     */
     public void update(double angle1, double angle2){
         setPend1Angle(angle1);
         setPend2Angle(angle2);
@@ -134,6 +151,11 @@ public class DPController implements Initializable{
         mainButton.setText("Pause Simulation");
     }
 
+    /**
+     * Sets the length of first pendulum bar and updates the position. Also updates the position of second pendulum.<br>
+     * If there exists an instance of double pendulum, updates the length at runtime.
+     * @param len Length of first pendulum bar.
+     */
     public void setLine1Length(double len){
         double[] vec1 = new double[]{pend1.getCenterX(), pend1.getCenterY()};
         double vec1len = Math.sqrt(vec1[0]*vec1[0] + vec1[1]*vec1[1]);
@@ -151,6 +173,10 @@ public class DPController implements Initializable{
             dp.setL1(len);
     }
 
+    /**
+     * Sets the length of second pendulum bar and updates the position. If there exists an instance of double pendulum, updates the length at runtime.
+     * @param len Length of second pendulum bar.
+     */
     public void setLine2Length(double len){
         double[] vec2 = new double[]{pend2.getCenterX(), pend2.getCenterY()};
         double vec2len = Math.sqrt(vec2[0]*vec2[0] + vec2[1]*vec2[1]);
@@ -164,6 +190,10 @@ public class DPController implements Initializable{
             dp.setL2(len);
     }
 
+    /**
+     * Updates the position of first pendulum based on new angle. Also updates second pendulum positions to stick with the first.
+     * @param a angle of second pendulum in radians.
+     */
     public void setPend1Angle(double a){
         double line1len = Math.sqrt(line1.getEndX()*line1.getEndX() + line1.getEndY()*line1.getEndY());
         line1.setEndX(line1len*Math.cos(a - Math.PI/2));
@@ -176,6 +206,11 @@ public class DPController implements Initializable{
         pend2.setLayoutY(line2.getLayoutY());
     }
 
+
+    /**
+     * Updates the position of second pendulum based on new angle.
+     * @param a angle of second pendulum in radians.
+     */
     public void setPend2Angle(double a){
         double line2len = Math.sqrt(line2.getEndX()*line2.getEndX() + line2.getEndY()*line2.getEndY());
         line2.setEndX(line2len*Math.cos(a - Math.PI/2));
@@ -183,25 +218,40 @@ public class DPController implements Initializable{
         pend2.setCenterX(line2.getEndX());
         pend2.setCenterY(line2.getEndY());
     }
-
+    /**
+     * Enlarges first pendulum circle object and, if there exists an instance of double pendulum, updates the mass at runtime.
+     * @param m Mass of first pendulum.
+     */
     public void setPend1Mass(double m){
         pend1.setRadius(m);
         if(dp != null)
             dp.setMass1(m);
     }
 
+    /**
+     * Enlarges second pendulum circle object and, if there exists an instance of double pendulum, updates the mass at runtime.
+     * @param m Mass of second pendulum.
+     */
     public void setPend2Mass(double m){
         pend2.setRadius(m);
         if(dp != null)
             dp.setMass2(m);
     }
 
+    /**
+     * Appends new trail point in the trail panel.
+     */
     private void appendTrail(){
         Circle c = new Circle(1.5, Color.WHITE);
         c.setCenterX(pend2.getLayoutX() + pend2.getCenterX());
         c.setCenterY(pend2.getLayoutY() + pend2.getCenterY());
         trailPane.getChildren().add(c);
     }
+
+    /**
+     * Resets the current double pendulum objects to the position it was initialised with, that is when simulation started.<br>
+     * Resets the values in setting window.
+     */
     @FXML
     public void reset(){
         dp.pause();
@@ -224,6 +274,11 @@ public class DPController implements Initializable{
         trailPane.getChildren().clear();
     }
 
+    /**
+     * Converts degrees to radians.
+     * @param degrees Angle in degrees.
+     * @return Angle in radians
+     */
     static double toRadians(double degrees){
         return degrees * 2 * Math.PI / 360;
     }

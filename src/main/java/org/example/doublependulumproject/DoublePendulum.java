@@ -6,8 +6,25 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.util.Duration;
 
-import java.security.Key;
-
+/**
+ * This class represenets double pendulum and calculates
+ * equations of motion for double pendulum based on set
+ * initial paramters.
+ *
+ * Example usage:
+ * <pre>
+ *     DPController dpcp = new DPController();
+ *     double m1 = 2, m2 = 4;
+ *     double L1 = 10, L2 = 15;
+ *     double theta1 = 90, theta2 = 120;
+ *     double dt = 0.01;
+ *     double speed = 1.5;
+ *     DoublePendulum myPendulum = DoublePendulum(dpcp, m1, L1, theta1, m2, L2, theta2, dt, speed)
+ * </pre>
+ * @author Damian Harenčák
+ * @version 1.0
+ * @since 2024-05-07
+ */
 public class DoublePendulum{
     private double m1, L1, theta1;
     private double m2, L2, theta2;
@@ -19,6 +36,18 @@ public class DoublePendulum{
     private final double g = 9.98;
     private Timeline anim, updateAnim;
 
+    /**
+     * Double pendulum constructor.
+     * @param dpController - Controller instance for fxml file.
+     * @param m1 - Mass of first pendulum.
+     * @param L1 - Length of first bar.
+     * @param theta1 - Angle of the first pendulum relative to vertical axis in degrees.
+     * @param m2 - Mass of the second pendulum.
+     * @param L2 - Length of second bar.
+     * @param theta2 - Angle of the second pendulum relative to vertical axis in degrees.
+     * @param dt - The rate of calculating next position of pendulums as well as accuracy constant in numerical integration.
+     * @param speed - speed of the animation of the pendulum simulation.
+     */
     public DoublePendulum(DPController dpController,double m1, double L1, double theta1,
                           double m2, double L2, double theta2, double dt, double speed){
         this.m1 = m1;
@@ -60,11 +89,17 @@ public class DoublePendulum{
 
     }
 
+    /**
+     * Pauses the animation and calcuations of the simulation.
+     */
     public void pause(){
         anim.pause();
         updateAnim.pause();
     }
 
+    /**
+     * Resumes the animation and calculations of the simulation.
+     */
     public void play(){
         anim.playFromStart();
         updateAnim.playFromStart();
@@ -80,6 +115,11 @@ public class DoublePendulum{
         theta2 += dtheta2*dt;
     }
 
+    /**
+     * Calculates next iteration of angular acceleration for first pendulum using conditions set and
+     * last calculated angles and angular velocities.
+     * @return value of angular acceleration of first pendulum.
+     */
     public double nextddTheta1(){
         double a = m1 + m2*Math.pow(Math.sin(theta1-theta2),2);
         return (-Math.sin(theta1-theta2)*(m2*L1*Math.pow(dtheta1,2)*Math.cos(theta1 - theta2)
@@ -87,6 +127,11 @@ public class DoublePendulum{
                 m2*Math.sin(theta2)*Math.cos(theta1-theta2)))/(L1*a);
     }
 
+    /**
+     * Calculates next iteration of angular acceleration for second pendulum using conditions set and
+     * last calculated angles and angular velocities.
+     * @return value of angular acceleration of second pendulum.
+     */
     public double nextddTheta2(){
         double a = m1 + m2*Math.pow(Math.sin(theta1-theta2),2);
         return (Math.sin(theta1-theta2)*((m1+m2)*L1*Math.pow(dtheta1,2) + m2*L2*
@@ -94,23 +139,40 @@ public class DoublePendulum{
                 Math.cos(theta1-theta2) - (m1+m2)*Math.sin(theta2)))/(L2*a);
     }
 
+    /**
+     * Sets the mass of first pendulum.
+     * @param m1 Mass value.
+     */
     public void setMass1(double m1){
         this.m1 = m1;
 
     }
 
+    /**
+     * Sets the mass of second pendulum.
+     * @param m2 Mass value.
+     */
     public void setMass2(double m2){
         this.m2 = m2;
     }
-
+    /**
+     * Sets the length of first bar.
+     * @param L1 Length value.
+     */
     public void setL1(double L1){
         this.L1 = L1;
     }
-
+    /**
+     * Sets the length of second bar.
+     * @param L2 Length value.
+     */
     public void setL2(double L2){
         this.L2 = L2;
     }
-
+    /**
+     * Sets the speed of animation.
+     * @param speed Speed value.
+     */
     public void setSpeed(double speed){
         this.speed = speed;
         boolean wasPaused = anim.getStatus() == Animation.Status.PAUSED;
@@ -121,7 +183,10 @@ public class DoublePendulum{
         if(!wasPaused)
             anim.playFromStart();
     }
-
+    /**
+     * Sets the accuracy of calculations. Lower means more accurate.
+     * @param dt Aaccuracy.
+     */
     public void setDt(double dt){
         this.dt = dt;
         boolean wasPaused = anim.getStatus() == Animation.Status.PAUSED;

@@ -4,25 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="558148be-33eb-4508-b897-f4b16b08afa8" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mvnw" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mvnw.cmd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/doublependulumproject/DPCanvas.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/doublependulumproject/DPController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/doublependulumproject/DoublePendulum.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Images/settingIcon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/org/example/doublependulumproject/DPGUI.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/org/example/doublependulumproject/style.css" afterDir="false" />
+    <list default="true" id="558148be-33eb-4508-b897-f4b16b08afa8" name="Changes" comment="Double pendulum in java!">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/doublependulumproject/DPController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/doublependulumproject/DPController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/doublependulumproject/DoublePendulum.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/doublependulumproject/DoublePendulum.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,6 +31,9 @@
         <option name="mavenHome" value="Use Maven wrapper" />
       </MavenGeneralSettings>
     </option>
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectColorInfo"><![CDATA[{
   "associatedIndex": 2
@@ -96,11 +84,24 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1714936983881</updated>
-      <workItem from="1714936984946" duration="49808000" />
+      <workItem from="1714936984946" duration="54885000" />
     </task>
+    <task id="LOCAL-00001" summary="Double pendulum in java!">
+      <option name="closed" value="true" />
+      <created>1715044423512</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1715044423512</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Double pendulum in java!" />
+    <option name="LAST_COMMIT_MESSAGE" value="Double pendulum in java!" />
   </component>
 </project>
